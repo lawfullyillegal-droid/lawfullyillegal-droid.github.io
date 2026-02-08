@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Tools - Web Utilities</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🛠️ Interactive Web Tools</h1>
+            <p class="subtitle">A collection of useful utilities for developers and users</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Text Encoder/Decoder -->
+        <section class="tool-card">
+            <h2>📝 Text Encoder/Decoder</h2>
+            <div class="tool-content">
+                <textarea id="textInput" placeholder="Enter text here..." rows="4"></textarea>
+                <div class="button-group">
+                    <button onclick="encodeBase64()">Encode Base64</button>
+                    <button onclick="decodeBase64()">Decode Base64</button>
+                    <button onclick="encodeURL()">URL Encode</button>
+                    <button onclick="decodeURL()">URL Decode</button>
+                </div>
+                <textarea id="textOutput" placeholder="Result will appear here..." rows="4" readonly></textarea>
+                <button class="copy-btn" onclick="copyToClipboard('textOutput')">📋 Copy Result</button>
+            </div>
+        </section>
+
+        <!-- JSON Formatter -->
+        <section class="tool-card">
+            <h2>🔧 JSON Formatter & Validator</h2>
+            <div class="tool-content">
+                <textarea id="jsonInput" placeholder='Enter JSON here, e.g., {"name":"value"}' rows="6"></textarea>
+                <div class="button-group">
+                    <button onclick="formatJSON()">Format JSON</button>
+                    <button onclick="minifyJSON()">Minify JSON</button>
+                    <button onclick="validateJSON()">Validate JSON</button>
+                </div>
+                <div id="jsonStatus" class="status-message"></div>
+                <textarea id="jsonOutput" placeholder="Formatted JSON will appear here..." rows="6" readonly></textarea>
+                <button class="copy-btn" onclick="copyToClipboard('jsonOutput')">📋 Copy Result</button>
+            </div>
+        </section>
+
+        <!-- Color Picker -->
+        <section class="tool-card">
+            <h2>🎨 Color Picker & Converter</h2>
+            <div class="tool-content">
+                <div class="color-picker-container">
+                    <input type="color" id="colorPicker" value="#3498db">
+                    <div class="color-display" id="colorDisplay"></div>
+                </div>
+                <div class="color-values">
+                    <div class="color-value">
+                        <label>HEX:</label>
+                        <input type="text" id="hexValue" readonly>
+                        <button onclick="copyColorValue('hexValue')">📋</button>
+                    </div>
+                    <div class="color-value">
+                        <label>RGB:</label>
+                        <input type="text" id="rgbValue" readonly>
+                        <button onclick="copyColorValue('rgbValue')">📋</button>
+                    </div>
+                    <div class="color-value">
+                        <label>HSL:</label>
+                        <input type="text" id="hslValue" readonly>
+                        <button onclick="copyColorValue('hslValue')">📋</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timestamp Converter -->
+        <section class="tool-card">
+            <h2>⏰ Timestamp Converter</h2>
+            <div class="tool-content">
+                <div class="timestamp-group">
+                    <label>Current Time:</label>
+                    <div id="currentTime" class="current-time"></div>
+                    <div id="currentTimestamp" class="current-timestamp"></div>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="timestampInput" placeholder="Enter Unix timestamp (e.g., 1234567890)">
+                    <button onclick="convertTimestamp()">Convert to Date</button>
+                </div>
+                <div id="timestampResult" class="result"></div>
+                <div class="input-group">
+                    <input type="datetime-local" id="dateInput">
+                    <button onclick="convertToTimestamp()">Convert to Timestamp</button>
+                </div>
+                <div id="dateResult" class="result"></div>
+            </div>
+        </section>
+
+        <!-- Password Generator -->
+        <section class="tool-card">
+            <h2>🔐 Password Generator</h2>
+            <div class="tool-content">
+                <div class="password-options">
+                    <div class="option">
+                        <label>Length: <span id="lengthValue">16</span></label>
+                        <input type="range" id="passwordLength" min="8" max="64" value="16" oninput="updateLength()">
+                    </div>
+                    <div class="option">
+                        <label><input type="checkbox" id="includeUppercase" checked> Uppercase (A-Z)</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="checkbox" id="includeLowercase" checked> Lowercase (a-z)</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="checkbox" id="includeNumbers" checked> Numbers (0-9)</label>
+                    </div>
+                    <div class="option">
+                        <label><input type="checkbox" id="includeSymbols" checked> Symbols (!@#$...)</label>
+                    </div>
+                </div>
+                <button onclick="generatePassword()" class="generate-btn">Generate Password</button>
+                <div class="password-result">
+                    <input type="text" id="generatedPassword" readonly>
+                    <button onclick="copyToClipboard('generatedPassword')">📋 Copy</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Interactive Web Tools. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
