@@ -45,7 +45,6 @@ function decodeURL() {
 // JSON Formatter Functions
 function formatJSON() {
     const input = document.getElementById('jsonInput').value;
-    const statusDiv = document.getElementById('jsonStatus');
     
     try {
         const parsed = JSON.parse(input);
@@ -59,7 +58,6 @@ function formatJSON() {
 
 function minifyJSON() {
     const input = document.getElementById('jsonInput').value;
-    const statusDiv = document.getElementById('jsonStatus');
     
     try {
         const parsed = JSON.parse(input);
