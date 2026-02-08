@@ -138,15 +138,19 @@ function updateColorValues() {
 
 function copyColorValue(elementId) {
     const input = document.getElementById(elementId);
-    input.select();
-    document.execCommand('copy');
+    const text = input.value;
     
-    const button = input.nextElementSibling;
-    const originalText = button.textContent;
-    button.textContent = '✓';
-    setTimeout(() => {
-        button.textContent = originalText;
-    }, 1000);
+    navigator.clipboard.writeText(text).then(() => {
+        const button = input.nextElementSibling;
+        const originalText = button.textContent;
+        button.textContent = '✓';
+        setTimeout(() => {
+            button.textContent = originalText;
+        }, 1000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy to clipboard');
+    });
 }
 
 // Timestamp Converter Functions
@@ -229,8 +233,11 @@ function generatePassword() {
     if (includeSymbols) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
     
     let password = '';
+    const randomValues = new Uint32Array(length);
+    crypto.getRandomValues(randomValues);
+    
     for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * charset.length);
+        const randomIndex = randomValues[i] % charset.length;
         password += charset[randomIndex];
     }
     
@@ -240,15 +247,19 @@ function generatePassword() {
 // Copy to Clipboard Function
 function copyToClipboard(elementId) {
     const element = document.getElementById(elementId);
-    element.select();
-    document.execCommand('copy');
+    const text = element.value;
     
-    // Visual feedback
-    const originalBg = element.style.backgroundColor;
-    element.style.backgroundColor = '#d4edda';
-    setTimeout(() => {
-        element.style.backgroundColor = originalBg;
-    }, 300);
+    navigator.clipboard.writeText(text).then(() => {
+        // Visual feedback
+        const originalBg = element.style.backgroundColor;
+        element.style.backgroundColor = '#d4edda';
+        setTimeout(() => {
+            element.style.backgroundColor = originalBg;
+        }, 300);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        alert('Failed to copy to clipboard');
+    });
 }
 
 // Initialize on page load
