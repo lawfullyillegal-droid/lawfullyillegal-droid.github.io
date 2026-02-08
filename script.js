@@ -2,7 +2,9 @@
 function encodeBase64() {
     const input = document.getElementById('textInput').value;
     try {
-        const encoded = btoa(unescape(encodeURIComponent(input)));
+        const bytes = new TextEncoder().encode(input);
+        const binaryString = Array.from(bytes, byte => String.fromCharCode(byte)).join('');
+        const encoded = btoa(binaryString);
         document.getElementById('textOutput').value = encoded;
     } catch (e) {
         alert('Error encoding text: ' + e.message);
@@ -12,7 +14,12 @@ function encodeBase64() {
 function decodeBase64() {
     const input = document.getElementById('textInput').value;
     try {
-        const decoded = decodeURIComponent(escape(atob(input)));
+        const binaryString = atob(input);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        const decoded = new TextDecoder().decode(bytes);
         document.getElementById('textOutput').value = decoded;
     } catch (e) {
         alert('Error decoding text: Invalid Base64 string');
