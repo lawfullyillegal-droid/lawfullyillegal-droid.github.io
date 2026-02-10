@@ -153,8 +153,8 @@ function copyColorValue(elementId) {
             button.textContent = originalText;
         }, 1000);
     }).catch(err => {
-        console.error('Failed to copy:', err);
-        alert('Failed to copy to clipboard');
+        console.error('Failed to copy color value to clipboard:', err);
+        alert('Failed to copy color value to clipboard');
     });
 }
 
@@ -262,8 +262,8 @@ function copyToClipboard(elementId) {
             element.style.backgroundColor = originalBg;
         }, 300);
     }).catch(err => {
-        console.error('Failed to copy:', err);
-        alert('Failed to copy to clipboard');
+        console.error('Failed to copy text to clipboard:', err);
+        alert('Failed to copy text to clipboard');
     });
 }
 
