@@ -262,7 +262,8 @@ function copyToClipboard(elementId) {
             element.style.backgroundColor = originalBg;
         }, 300);
     }).catch(err => {
-        console.error('Failed to copy text to clipboard:', err);
+
+      console.error('Failed to copy text to clipboard:', err);
         alert('Failed to copy text to clipboard');
     });
 }
